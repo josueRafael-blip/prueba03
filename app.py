@@ -80,7 +80,7 @@ def show_information():
         "Más allá de RHEL, Red Hat impulsa múltiples proyectos de código abierto y ofrece herramientas que facilitan la gestión, automatización y escalabilidad de infraestructuras TI en todo el mundo."
     )
     # Imagen con URL que permite acceso directo para evitar problema de hotlink
-    st.image("https://1000marcas.net/wp-content/uploads/2020/11/Red-Hat-Logo.png", width=220, caption="Logo de Red Hat")
+    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Red_Hat_logo.svg/2560px-Red_Hat_logo.svg.png", width=220, caption="Logo de Red Hat")
     st.markdown("</div>", unsafe_allow_html=True)
 
     if st.button("➡️ Ir al Quiz"):
