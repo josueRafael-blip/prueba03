@@ -30,7 +30,7 @@ h1, h2, h3 {
     margin-top: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
-.stRadio > label {
+.stSelectbox > div[role="listbox"] {
     font-weight: 600;
 }
 button {
@@ -89,42 +89,42 @@ st.markdown("## 🧠 Quiz: Pon a prueba tus conocimientos")
 
 questions = [
     {
-        "q": "¿Quién creó el Kernel Linux?",
+        "q": "¿Quién es el creador del Kernel Linux?",
         "options": ["Bill Gates", "Linus Torvalds", "Steve Jobs", "Richard Stallman"],
         "answer": "Linus Torvalds"
     },
     {
-        "q": "¿En qué año se creó el Kernel Linux?",
+        "q": "¿En qué año fue creado el Kernel Linux?",
         "options": ["1985", "1991", "1998", "2000"],
         "answer": "1991"
     },
     {
         "q": "¿Cuál es la función principal del Kernel Linux?",
         "options": [
-            "Gestionar hardware y recursos",
-            "Navegar por internet",
+            "Gestionar hardware y recursos del sistema",
+            "Navegar por Internet",
             "Editar documentos",
-            "Ejecutar juegos"
+            "Ejecutar videojuegos"
         ],
-        "answer": "Gestionar hardware y recursos"
+        "answer": "Gestionar hardware y recursos del sistema"
     },
     {
         "q": "¿Qué es Red Hat Enterprise Linux (RHEL)?",
         "options": [
             "Un antivirus",
-            "Una distribución de Linux para empresas",
-            "Un software de edición de video",
+            "Una distribución empresarial de Linux",
+            "Un editor de vídeo",
             "Un navegador web"
         ],
-        "answer": "Una distribución de Linux para empresas"
+        "answer": "Una distribución empresarial de Linux"
     },
     {
-        "q": "¿Qué empresa compró Red Hat en 2019?",
+        "q": "¿Cuál empresa adquirió Red Hat en 2019?",
         "options": ["Google", "IBM", "Microsoft", "Amazon"],
         "answer": "IBM"
     },
     {
-        "q": "¿Linux es software de código abierto?",
+        "q": "¿Linux es software libre y de código abierto?",
         "options": ["Sí", "No"],
         "answer": "Sí"
     },
@@ -136,24 +136,29 @@ questions = [
 ]
 
 score = 0
-responses = []
+all_answered = True
 
 for idx, q in enumerate(questions):
     st.markdown(f"### {idx+1}. {q['q']}")
-    choice = st.radio(f"Selecciona una opción:", q["options"], key=f"q{idx}")
-    responses.append(choice)
-    if choice == q["answer"]:
+    options = ["Selecciona una opción"] + q["options"]
+    choice = st.selectbox("", options, key=f"q{idx}")
+    if choice == "Selecciona una opción":
+        all_answered = False
+    elif choice == q["answer"]:
         score += 1
 
 if st.button("📊 Ver Resultado"):
-    st.markdown(f"### Tu puntaje es: {score} de {len(questions)}")
-    if score == len(questions):
-        st.balloons()
-        st.success("🎉 ¡Excelente! Eres un experto en Kernel Linux y Red Hat.")
-    elif score >= len(questions)//2:
-        st.success("¡Buen trabajo! Sigue aprendiendo para ser un experto.")
+    if not all_answered:
+        st.warning("⚠️ Por favor responde todas las preguntas antes de ver el resultado.")
     else:
-        st.warning("¡No te rindas! Sigue investigando y practicando.")
+        st.markdown(f"### Tu puntaje es: {score} de {len(questions)}")
+        if score == len(questions):
+            st.balloons()
+            st.success("🎉 ¡Excelente! Eres un experto en Kernel Linux y Red Hat.")
+        elif score >= len(questions)//2:
+            st.success("¡Buen trabajo! Sigue aprendiendo para ser un experto.")
+        else:
+            st.warning("¡No te rindas! Sigue investigando y practicando.")
 
 st.markdown("</div>", unsafe_allow_html=True)
 
