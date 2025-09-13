@@ -56,6 +56,7 @@ img {
 # --- Funciones ---
 def show_welcome():
     st.markdown("<h1 style='text-align:center; color:#1c7ed6;'>🐧 Bienvenido a Kernel Linux & Red Hat</h1>", unsafe_allow_html=True)
+    st.info("Autor Josue Israel Rafael Rojas alias Rafa")
     st.markdown("<p style='text-align:center; font-size:18px;'>Una app interactiva para aprender sobre Linux y Red Hat, y probar tus conocimientos con un quiz.</p>", unsafe_allow_html=True)
     if st.button("🚀 Iniciar"):
         st.session_state.page = "Información"
