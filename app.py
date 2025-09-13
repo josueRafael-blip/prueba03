@@ -12,6 +12,7 @@ body {
     background: linear-gradient(135deg, #4c6ef5, #d0ebff);
     color: #0b3d91;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
 }
 h1, h2, h3 {
     font-weight: 700;
@@ -38,6 +39,11 @@ button {
     color: white !important;
     font-weight: 700 !important;
 }
+img {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    margin: 10px 0;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -48,7 +54,7 @@ def animated_header(text, delay=0.07):
     displayed = ""
     for c in text:
         displayed += c
-        placeholder.markdown(f"<h1 style='color:#1c7ed6'>{displayed}</h1>", unsafe_allow_html=True)
+        placeholder.markdown(f"<h1 style='color:#1c7ed6;text-align:center'>{displayed}</h1>", unsafe_allow_html=True)
         time.sleep(delay)
 
 
@@ -61,22 +67,26 @@ st.markdown("---")
 with st.container():
     st.markdown('<div class="container">', unsafe_allow_html=True)
     st.markdown("## ¿Qué es el Kernel Linux?")
-    st.write("""
-    El **Kernel Linux** es el núcleo del sistema operativo Linux.  
-    Se encarga de gestionar el hardware, controlar los procesos, la memoria y la comunicación entre los programas y la máquina física.  
-    Fue creado por **Linus Torvalds** en 1991 y es un proyecto de código abierto que ha evolucionado hasta ser la base de muchas distribuciones.
-    """)
+    st.write(
+        "El Kernel Linux es el corazón del sistema operativo Linux. "
+        "Fue creado en 1991 por Linus Torvalds con el propósito de desarrollar un núcleo robusto, libre y abierto que maneje las operaciones esenciales del sistema. "
+        "El kernel actúa como un intermediario entre el hardware y el software, gestionando recursos como la memoria, el procesador, los dispositivos conectados y los procesos que se ejecutan. "
+        "Gracias a su diseño modular y flexible, el kernel Linux se adapta a una gran variedad de sistemas, desde computadoras personales hasta supercomputadoras y dispositivos embebidos. "
+        "Su naturaleza de código abierto ha permitido que miles de desarrolladores alrededor del mundo colaboren y mejoren continuamente este proyecto, convirtiéndolo en una pieza fundamental en el mundo tecnológico actual."
+    )
     st.image("https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg", width=140, caption="Tux, la mascota oficial de Linux")
     st.markdown("</div>", unsafe_allow_html=True)
 
 with st.container():
     st.markdown('<div class="container">', unsafe_allow_html=True)
     st.markdown("## ¿Qué es Red Hat?")
-    st.write("""
-    **Red Hat, Inc.** es una empresa líder en soluciones de software de código abierto.  
-    Su producto más destacado es **Red Hat Enterprise Linux (RHEL)**, una distribución de Linux enfocada en empresas, que ofrece estabilidad, soporte y seguridad.  
-    Red Hat fue adquirida por IBM en 2019, reforzando su papel en el ecosistema tecnológico empresarial.
-    """)
+    st.write(
+        "Red Hat, Inc. es una empresa pionera en el desarrollo y soporte de soluciones de código abierto. "
+        "Es ampliamente conocida por Red Hat Enterprise Linux (RHEL), una distribución de Linux enfocada en el sector empresarial que destaca por su estabilidad, seguridad y soporte profesional. "
+        "RHEL se utiliza en una gran cantidad de servidores y entornos corporativos donde la confiabilidad es crítica. "
+        "En 2019, Red Hat fue adquirida por IBM, una jugada estratégica que consolidó su influencia en el mercado tecnológico, especialmente en soluciones de nube híbrida y software empresarial. "
+        "Más allá de RHEL, Red Hat impulsa múltiples proyectos de código abierto y ofrece herramientas que facilitan la gestión, automatización y escalabilidad de infraestructuras TI en todo el mundo."
+    )
     st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Red_Hat_logo.svg/1200px-Red_Hat_logo.svg.png", width=220, caption="Logo de Red Hat")
     st.markdown("</div>", unsafe_allow_html=True)
 
