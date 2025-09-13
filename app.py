@@ -79,8 +79,8 @@ def show_information():
         "RHEL se utiliza en una gran cantidad de servidores y entornos corporativos donde la confiabilidad es crítica. En 2019, Red Hat fue adquirida por IBM, una jugada estratégica que consolidó su influencia en el mercado tecnológico, especialmente en soluciones de nube híbrida y software empresarial. "
         "Más allá de RHEL, Red Hat impulsa múltiples proyectos de código abierto y ofrece herramientas que facilitan la gestión, automatización y escalabilidad de infraestructuras TI en todo el mundo."
     )
-    # Cambié la URL a una más confiable para que se vea la imagen
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Red_Hat_logo.svg/2560px-Red_Hat_logo.svg.png", width=220, caption="Logo de Red Hat")
+    # Imagen con URL que permite acceso directo para evitar problema de hotlink
+    st.image("https://1000marcas.net/wp-content/uploads/2020/11/Red-Hat-Logo.png", width=220, caption="Logo de Red Hat")
     st.markdown("</div>", unsafe_allow_html=True)
 
     if st.button("➡️ Ir al Quiz"):
@@ -93,12 +93,13 @@ def show_quiz():
     if not st.session_state.quiz_started:
         st.markdown("<h2>📝 Por favor, ingresa tu nombre para comenzar el quiz:</h2>", unsafe_allow_html=True)
         name = st.text_input("Nombre")
-        if st.button("Comenzar Quiz") and name.strip():
-            st.session_state.quiz_started = True
-            st.session_state.user_name = name.strip()
-            st.experimental_rerun()
-        elif st.button("Comenzar Quiz"):
-            st.warning("Por favor, ingresa tu nombre antes de continuar.")
+        if st.button("Comenzar Quiz"):
+            if name.strip():
+                st.session_state.quiz_started = True
+                st.session_state.user_name = name.strip()
+                st.experimental_rerun()
+            else:
+                st.warning("Por favor, ingresa tu nombre antes de continuar.")
     else:
         st.markdown(f"<h2>Hola, <span style='color:#1971c2;'>{st.session_state.user_name}</span>, responde las siguientes preguntas:</h2>", unsafe_allow_html=True)
 
@@ -156,7 +157,11 @@ def show_quiz():
         for idx, q in enumerate(questions):
             st.markdown(f"**{idx+1}. {q['q']}**")
             options = ["Selecciona una opción"] + q["options"]
-            st.session_state.answers[idx] = st.selectbox("", options, index=options.index(st.session_state.answers[idx]) if st.session_state.answers[idx] in options else 0, key=f"q{idx}")
+            st.session_state.answers[idx] = st.selectbox(
+                "", options,
+                index=options.index(st.session_state.answers[idx]) if st.session_state.answers[idx] in options else 0,
+                key=f"q{idx}"
+            )
 
         if st.button("Finalizar y Ver Resultado"):
             if "Selecciona una opción" in st.session_state.answers:
@@ -172,7 +177,7 @@ def show_quiz():
 
                 st.markdown("---")
                 st.markdown(f"### {st.session_state.user_name}, obtuviste {score} de {len(questions)} preguntas correctas.")
-                
+
                 if score == len(questions):
                     st.balloons()
                     motivacion = "🎉 ¡Excelente! Eres un experto en Kernel Linux y Red Hat."
