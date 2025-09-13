@@ -80,7 +80,7 @@ def show_information():
         "Más allá de RHEL, Red Hat impulsa múltiples proyectos de código abierto y ofrece herramientas que facilitan la gestión, automatización y escalabilidad de infraestructuras TI en todo el mundo."
     )
     # Cambié la URL a una más confiable para que se vea la imagen
-    st.image("https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3ARed_Hat_logo.svg&psig=AOvVaw0wELJGhOwiYhIiMbT0MME3&ust=1757892438854000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPCY2OXx1o8DFQAAAAAdAAAAABAE", width=220, caption="Logo de Red Hat")
+    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Red_Hat_logo.svg/2560px-Red_Hat_logo.svg.png", width=220, caption="Logo de Red Hat")
     st.markdown("</div>", unsafe_allow_html=True)
 
     if st.button("➡️ Ir al Quiz"):
